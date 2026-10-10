@@ -1,0 +1,15 @@
+{
+  "name": "crave2bite",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.4.0",
+    "razorpay": "^2.9.6"
+  }
+}

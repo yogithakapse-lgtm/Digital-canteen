@@ -1,0 +1,127 @@
+.payment-methods {
+  display: grid;
+  gap: 7px;
+  margin: 12px 0 7px;
+  padding: 0;
+  border: 0;
+}
+
+.payment-methods legend {
+  margin-bottom: 7px;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.payment-methods label {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.payment-methods label:has(input:checked) {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.payment-methods input {
+  accent-color: var(--green);
+}
+
+.payment-methods label span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.payment-methods label strong {
+  font-size: 10px;
+}
+
+.payment-methods label small,
+.payment-setup-note,
+.payment-status-line {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.payment-methods label:has(input:disabled) {
+  opacity: .58;
+  cursor: not-allowed;
+}
+
+.payment-setup-note {
+  margin: 5px 0;
+  line-height: 1.6;
+}
+
+.payment-status-line {
+  margin: 9px 0;
+  padding: 9px 10px;
+  border-radius: 6px;
+  background: var(--green-soft);
+  line-height: 1.6;
+}
+
+.payment-status-chip {
+  display: inline-flex;
+  padding: 4px 7px;
+  border-radius: 12px;
+  background: #f4eee0;
+  color: #745621;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .035em;
+  white-space: nowrap;
+}
+
+.payment-status-chip.successful {
+  background: #e2f1e8;
+  color: #17613d;
+}
+
+.payment-status-chip.failed,
+.payment-status-chip.cancelled {
+  background: #f9e9e5;
+  color: #9a3f2e;
+}
+
+.payment-method-label {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.admin-payment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.admin-mark-paid {
+  padding: 6px 9px;
+  border: 1px solid #cce1d3;
+  border-radius: 5px;
+  background: #e8f4ec;
+  color: #17613d;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.admin-mark-paid:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-methods label {
+    scroll-behavior: auto;
+  }
+}

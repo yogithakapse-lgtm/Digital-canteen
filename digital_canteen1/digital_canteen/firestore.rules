@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "REPLACE_WITH_YOUR_ADMIN_EMAIL";
+    }
+
+    function paymentConfirmedBeforeKitchenUpdate() {
+      return !("paymentMethod" in resource.data)
+        || !(resource.data.paymentMethod in ["online", "upi"])
+        || resource.data.paymentStatus == "Successful";
+    }
+
+    match /orders/{orderId} {
+      // Order documents contain menu selections and a token, not names or contact details.
+      allow read: if true;
+      // Trusted Vercel functions use the Admin SDK to validate prices, reserve
+      // tokens, create orders, and record provider-verified payment state.
+      allow create: if false;
+      allow update: if isAdmin()
+        && paymentConfirmedBeforeKitchenUpdate()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["status"])
+        && request.resource.data.status in ["Placed", "Preparing", "Ready for Pickup"];
+      allow delete: if false;
+    }
+
+    match /checkoutSessions/{sessionId} {
+      allow read, write: if false;
+    }
+
+    match /checkoutRequests/{requestId} {
+      allow read, write: if false;
+    }
+
+    match /orderTokens/{token} {
+      allow read, write: if false;
+    }
+
+    match /settings/menu {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(["unavailableIds"])
+        && request.resource.data.unavailableIds is list
+        && request.resource.data.unavailableIds.size() <= 100;
+      allow delete: if false;
+    }
+  }
+}

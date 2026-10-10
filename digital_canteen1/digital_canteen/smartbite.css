@@ -1,0 +1,462 @@
+.smartbite-panel {
+  position: fixed;
+  z-index: 27;
+  right: 24px;
+  bottom: 94px;
+  display: flex;
+  width: min(385px, calc(100vw - 32px));
+  max-height: min(690px, calc(100dvh - 122px));
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e9e7df;
+  border-radius: 15px;
+  background: var(--cream);
+  box-shadow: 0 20px 68px #1d2c2330;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(.985);
+  transform-origin: bottom right;
+  transition: opacity .2s, transform .2s, visibility .2s;
+  visibility: hidden;
+}
+
+.smartbite-panel.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.smartbite-header {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  background: #274633;
+  color: white;
+}
+
+.smartbite-avatar {
+  display: grid;
+  width: 37px;
+  height: 37px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 13px;
+  background: #e9f0cd;
+  color: #38553a;
+  font-size: 22px;
+}
+
+.smartbite-title {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.smartbite-title strong {
+  font-size: 14px;
+}
+
+.smartbite-title small {
+  color: #d1dcc5;
+  font-size: 7px;
+  letter-spacing: .12em;
+}
+
+.smartbite-mode {
+  padding: 5px 7px;
+  border: 1px solid #6d806d;
+  border-radius: 20px;
+  color: #e4ebd5;
+  font-size: 7px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+.smartbite-close {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.smartbite-close:hover {
+  background: #ffffff1c;
+}
+
+.smartbite-disclosure {
+  padding: 9px 14px;
+  border-bottom: 1px solid #eeece5;
+  background: #f3f2ec;
+  color: #71746a;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.smartbite-messages {
+  min-height: 95px;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 15px 13px 10px;
+  scroll-behavior: smooth;
+}
+
+.smartbite-message {
+  width: fit-content;
+  max-width: 94%;
+  margin-bottom: 12px;
+  padding: 9px 11px;
+  border: 1px solid #edebe4;
+  border-radius: 3px 11px 11px 11px;
+  background: white;
+}
+
+.smartbite-message.user {
+  margin-left: auto;
+  border-color: #e1e8dc;
+  border-radius: 11px 3px 11px 11px;
+  background: #eef1e8;
+}
+
+.smartbite-message-author,
+.smartbite-input-label {
+  display: block;
+  color: #89907d;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.smartbite-message-copy {
+  margin: 5px 0 0;
+  color: #586054;
+  font-size: 10px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.smartbite-recommendations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.smartbite-food-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+  padding: 9px;
+  border: 1px solid #eeece5;
+  border-radius: 7px;
+  background: #fcfbf8;
+}
+
+.smartbite-food-kicker {
+  color: #81906e;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .07em;
+}
+
+.smartbite-food-card>strong {
+  color: #334336;
+  font-size: 9px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.smartbite-food-price {
+  color: #385540;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.smartbite-food-detail {
+  color: #87877c;
+  font-size: 8px;
+}
+
+.smartbite-add-button {
+  display: flex;
+  min-height: 29px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 3px;
+  padding: 5px 7px;
+  border: 1px solid #dfe6d8;
+  border-radius: 5px;
+  background: #ecf0e7;
+  color: #36533a;
+  font-size: 8px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.smartbite-add-button:hover {
+  background: #dfe9d6;
+}
+
+.smartbite-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: -4px 0 12px;
+}
+
+.smartbite-quick-actions button {
+  padding: 6px 9px;
+  border: 1px solid #dfe5d8;
+  border-radius: 20px;
+  background: #f4f5ef;
+  color: #596e4d;
+  font-size: 8px;
+}
+
+.smartbite-quick-actions button:hover {
+  background: #e8eee1;
+}
+
+.smartbite-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 8px;
+  padding: 11px 14px 9px;
+  border-top: 1px solid #eeece5;
+  background: #f6f5f0;
+}
+
+.smartbite-input-label {
+  align-self: end;
+}
+
+.smartbite-budget,
+.smartbite-preferences {
+  width: 100%;
+  height: 34px;
+  min-width: 0;
+  padding: 0 9px;
+  border: 1px solid #e6e4dc;
+  border-radius: 5px;
+  background: white;
+  color: #344135;
+  font-size: 9px;
+}
+
+.smartbite-budget::placeholder,
+.smartbite-preferences::placeholder {
+  color: #999a90;
+}
+
+.smartbite-submit {
+  grid-column: 1 / -1;
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--green);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.smartbite-submit:hover {
+  background: #315b3e;
+}
+
+.smartbite-footnote {
+  margin: 0;
+  padding: 0 14px 11px;
+  background: #f6f5f0;
+  color: #88897f;
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+.smartbite-launcher {
+  position: fixed;
+  z-index: 26;
+  right: 24px;
+  bottom: 23px;
+  display: flex;
+  min-height: 49px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 15px 0 9px;
+  border: 1px solid #ffffff;
+  border-radius: 26px;
+  background: #274633;
+  box-shadow: 0 7px 24px #24372a33;
+  color: white;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+
+.smartbite-launcher:hover {
+  transform: translateY(-2px);
+  background: #315b3e;
+  box-shadow: 0 10px 30px #24372a44;
+}
+
+.smartbite-launcher-icon {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e9f0cd;
+  color: #36563b;
+  font-size: 18px;
+}
+
+.smartbite-launcher-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.smartbite-launcher-dot {
+  width: 7px;
+  height: 7px;
+  margin-left: 2px;
+  border-radius: 50%;
+  background: #cbdca9;
+}
+
+.analytics-section {
+  padding: 13px 11px;
+  border: 1px solid #eeece5;
+  border-radius: 7px;
+  background: #faf9f6;
+}
+
+.analytics-scope,
+.analytics-disclaimer {
+  margin: 8px 0;
+  color: #86877d;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.analytics-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 10px 0;
+}
+
+.analytics-stats .admin-stat {
+  min-width: 0;
+  padding: 8px 7px;
+}
+
+.analytics-stats .admin-stat strong {
+  overflow: hidden;
+  font-size: 15px;
+  text-overflow: ellipsis;
+}
+
+.analytics-stats .admin-stat small {
+  font-size: 8px;
+}
+
+.analytics-popularity-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 12px 0 4px;
+}
+
+.analytics-popularity-heading strong {
+  font-size: 10px;
+}
+
+.analytics-popularity-heading>span {
+  color: #87877e;
+  font-size: 8px;
+}
+
+.analytics-ranking {
+  display: grid;
+  gap: 5px;
+  margin: 8px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.analytics-item {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 19px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  background: white;
+}
+
+.analytics-rank {
+  color: #869071;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.analytics-item-name {
+  overflow: hidden;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.analytics-sales {
+  color: #657853;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.analytics-no-sales {
+  margin: 8px 0;
+  color: #85867c;
+  font-size: 9px;
+  line-height: 1.65;
+}
+
+@media (max-width: 660px) {
+  .smartbite-panel {
+    right: 10px;
+    bottom: 78px;
+    width: min(385px, calc(100vw - 20px));
+    max-height: min(680px, calc(100dvh - 96px));
+  }
+
+  .smartbite-launcher {
+    right: 13px;
+    bottom: 13px;
+    min-height: 44px;
+    gap: 7px;
+    padding: 0 12px 0 7px;
+  }
+
+  .analytics-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smartbite-panel,
+  .smartbite-launcher {
+    transition: none;
+  }
+}

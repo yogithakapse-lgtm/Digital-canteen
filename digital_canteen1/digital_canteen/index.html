@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#087a57" />
+    <meta name="description" content="Crave It. Scan It. Bite It. Browse your campus canteen menu and order ahead with Crave2Bite." />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Crave2Bite" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>Crave2Bite — Crave It. Scan It. Bite It.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./smartbite.css" />
+    <link rel="stylesheet" href="./branding.css" />
+    <link rel="stylesheet" href="./payments.css" />
+    <link rel="stylesheet" href="./pages.css" />
+    <link rel="stylesheet" href="./feedback.css" />
+    <script src="./firebase-config.js"></script>
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="announcement"><span class="announcement-dot"></span> Your campus kitchen, now one tap away <span class="announcement-separator">✳</span> Freshly made, always.</div>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Crave2Bite home">
+        <img class="brand-mark" src="/icons/icon.svg" alt="" aria-hidden="true" />
+        <span class="brand-copy"><strong>Crave<span>2Bite</span></strong><small>CRAVE IT. SCAN IT. BITE IT.</small></span>
+      </a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#home-menu">Menu</a>
+        <a class="nav-link" href="#track">Track order</a>
+      </nav>
+      <div class="header-actions">
+        <span class="mode-pill" id="mode-badge"><span></span> DEMO MODE</span>
+        <button class="icon-button order-status-trigger" id="track-order-button" aria-label="Track your latest order" title="Track your latest order">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 8h11l1 12h-13l1-12ZM9 8V6a3 3 0 1 1 6 0v2m-3 5v3m0 0-1.5-1.5M12 16l1.5-1.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="status-dot" id="order-notification-dot" hidden></span>
+        </button>
+        <button class="install-button" id="install-app-button" type="button" aria-label="Install Crave2Bite">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v11m0 0 4-4m-4 4-4-4M5 15.5v2A3.5 3.5 0 0 0 8.5 21h7a3.5 3.5 0 0 0 3.5-3.5v-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Install app</span>
+        </button>
+        <button class="cart-button" id="cart-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 8h11l1 12h-13l1-12ZM9 8V6a3 3 0 1 1 6 0v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>My order</span><span class="cart-count" id="cart-count">0</span></button>
+        <button class="admin-button" id="admin-mode-button" aria-label="Staff dashboard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.7 19 7v5.2c0 4.2-2.9 7.2-7 8.6-4.1-1.4-7-4.4-7-8.6V7l7-3.3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 12.2 11.3 14l3.5-3.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>For staff</span></button>
+      </div>
+    </header>
+    <div class="network-status" id="network-status" role="status" aria-live="polite" hidden>
+      <strong>You’re offline.</strong> Your menu and app still work, but an order can’t be placed without a connection. Your basket stays here until you’re back online.
+    </div>
+
+    <main>
+      <div class="route-page" id="home-page">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-pattern" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-line"></span> CRAVE IT. SCAN IT. BITE IT.</span>
+          <h1 id="hero-heading">Your break deserves<br />something <span>delicious.</span></h1>
+          <p>Skip the line, not the good stuff. Pick your favorites, order ahead, and collect when it's ready.</p>
+          <a class="hero-cta" href="#home-menu">Find your next favorite <span>↗</span></a>
+          <div class="hero-footnote"><span class="tiny-check">✓</span> Made fresh on campus <span class="tiny-check">✓</span> Ready when you are</div>
+        </div>
+        <div class="hero-image-wrap">
+          <img class="hero-image" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="A freshly prepared colorful campus lunch bowl" />
+          <div class="hero-photo-note"><span class="note-icon">✳</span><span><strong>Your campus kitchen</strong><small>Something good is cooking</small></span></div>
+          <span class="hero-image-sticker" aria-hidden="true">made<br />with a<br /><em>little<br />love</em></span>
+        </div>
+        <div class="hero-bottom">
+          <div class="queue-summary"><span class="queue-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19v-1.6A3.4 3.4 0 0 1 7 14h4a3.4 3.4 0 0 1 3.5 3.4V19m1-7.5h2.2a2.8 2.8 0 0 1 2.8 2.8V16m-4-11.7a3 3 0 0 1 0 5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span><strong><span id="queue-count">0</span> <span id="queue-label">orders in the kitchen</span></strong><small>Live campus queue</small></span></div>
+          <span class="hero-divider"></span>
+          <div class="wait-summary"><span class="wait-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span><strong>About <span id="wait-time">5 min</span></strong><small>Estimated wait time</small></span></div>
+          <span class="queue-refresh"><span class="pulse"></span> Updates live</span>
+        </div>
+        <span class="hero-flower" aria-hidden="true">✳</span>
+      </section>
+
+      <section class="menu-section" id="menu-section" aria-labelledby="menu-heading">
+        <div class="menu-heading-row"><div><span class="eyebrow menu-eyebrow"><span class="eyebrow-line"></span> STRAIGHT FROM OUR KITCHEN</span><h2 id="menu-heading">Good things on the menu<span class="heading-period">.</span></h2><p class="menu-subheading">Made fresh here. Gone before the bell.</p></div><div class="recommendation-note"><span>↗</span> The campus favorites are<br />worth getting to know.</div></div>
+        <div class="menu-toolbar">
+          <div class="category-tabs" id="category-tabs" role="group" aria-label="Filter menu by category"></div>
+          <div class="menu-tools">
+            <label class="search-field"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.3 4.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="visually-hidden">Search the menu</span><input id="search-input" type="search" placeholder="Find something delicious..." autocomplete="off" /><kbd>⌘ K</kbd></label>
+            <label class="price-filter">Price <select id="price-filter" aria-label="Filter menu by maximum price"><option value="0">Any</option><option value="100">Under ₹100</option><option value="150">Under ₹150</option><option value="200">Under ₹200</option></select></label>
+          </div>
+        </div>
+        <div class="popular-banner" id="popular-banner"><span class="popular-flower">✳</span><span><strong>A little campus-approved inspiration</strong><small>These student favorites know how to make your break.</small></span><span class="popular-arrow" aria-hidden="true">↗</span></div>
+        <div class="menu-grid" id="menu-grid" aria-live="polite"></div>
+        <div class="empty-menu" id="empty-menu" hidden><span>Nothing on the menu by that name just yet.</span><button id="clear-search">Clear your search ↗</button></div>
+        <div class="menu-bottom-note"><span class="bottom-note-star">✳</span> Something different catches your eye? <span>We'll be cooking up new favorites all semester.</span></div>
+      </section>
+
+      <section class="how-section" id="how-it-works"><div class="how-heading"><span class="eyebrow"><span class="eyebrow-line"></span> YOUR BREAK, SORTED</span><h2>Good food, without the <span>waiting.</span></h2><p>Three little steps between you and something lovely.</p></div><div class="steps-grid"><article class="step-card"><span class="step-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H10v4H5V5.5ZM10 3h3.5A2.5 2.5 0 0 1 16 5.5V7h-6V3Zm6 4h3a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7h13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 13h10M7 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="step-number">01</span><h3>Find your favorite</h3><p>Get to know the menu, find something lovely, and make it yours.</p></article><article class="step-card"><span class="step-icon step-icon-mid"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 5.5A2.5 2.5 0 0 1 7 3h11.5A2.5 2.5 0 0 1 21 5.5v12a2.5 2.5 0 0 1-2.5 2.5H7a2.5 2.5 0 0 1-2.5-2.5v-12Z" stroke="currentColor" stroke-width="1.7"/><path d="m9 10 3 3 6-6M9 16h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="step-number">02</span><h3>Leave the line behind</h3><p>Place your order in seconds. We'll get started in the kitchen.</p></article><article class="step-card"><span class="step-icon step-icon-last"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9h12l1 11H5L6 9Zm3 0V6.5a3 3 0 1 1 6 0V9m-6 5h6m-3-3v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="step-number">03</span><h3>Collect when it's ready</h3><p>Keep an eye on your live order, then stop by with your token.</p></article></div></section>
+      <section class="qr-cta" aria-label="Open the canteen on your phone"><div class="qr-decoration" aria-hidden="true">✳</div><span class="qr-overline">AT THE CANTEEN? YOU'RE ALREADY HERE.</span><h2>Open the menu on<br />your <span>phone.</span></h2><p>Snap the QR code with your camera and make<br />your next break the best bit of your day.</p><div class="qr-widget"><img id="qr-code-image" alt="QR code to open the Crave2Bite menu" width="112" height="112" /><span>SCAN ME<br /><small>HAPPY EATING!</small></span></div></section>
+      <section class="feedback-banner" aria-labelledby="feedback-banner-heading">
+        <div class="feedback-banner-copy">
+          <span class="feedback-eyebrow">YOUR FEEDBACK MATTERS</span>
+          <h2 id="feedback-banner-heading">Help us make <em>your canteen</em> better.</h2>
+          <p>Scan the QR code to share your experience and help us serve you better every day.</p>
+          <a class="feedback-link" href="#feedback">Give Feedback <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="feedback-qr-card">
+          <div class="feedback-qr-wrap">
+            <img id="feedback-qr-image" alt="" width="180" height="180" hidden />
+            <div id="feedback-qr-placeholder" class="feedback-qr-placeholder" role="status">Feedback QR is not configured yet. Set <code>CANTEEN_FEEDBACK_URL</code> in your Vercel environment.</div>
+          </div>
+          <div class="feedback-qr-label"><strong>SCAN TO SHARE</strong><span>YOUR FEEDBACK</span><a href="#feedback">Open feedback form <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </section>
+      </div>
+      <section class="route-page food-details-page" id="food-details-page" hidden aria-live="polite"></section>
+      <section class="route-page cart-page" id="cart-page" hidden aria-labelledby="cart-page-heading">
+        <div class="route-page-heading"><a class="back-link" href="#home">← Browse menu</a><span class="eyebrow">YOUR LITTLE LINEUP</span><h1 id="cart-page-heading">Your cart<span class="heading-period">.</span></h1><p>Review your picks before checkout.</p></div>
+        <div class="cart-page-layout"><div id="cart-page-items"></div><div id="cart-page-empty" hidden class="route-empty"><strong>Your cart is waiting for something delicious.</strong><a class="text-button" href="#home-menu">Browse the menu ↗</a></div><div class="cart-page-aside"><div id="cart-page-summary"></div><a class="checkout-button continue-checkout" id="continue-checkout" href="#checkout">Continue to checkout ↗</a></div></div>
+      </section>
+      <section class="route-page checkout-page" id="checkout-page" hidden aria-labelledby="checkout-page-heading">
+        <div class="route-page-heading"><a class="back-link" href="#cart">← Back to cart</a><span class="eyebrow">ONE LAST THING</span><h1 id="checkout-page-heading">Checkout<span class="heading-period">.</span></h1><p>Choose how to pay, then place your order securely.</p></div>
+        <div class="checkout-page-layout"><div id="checkout-page-items"></div><div id="checkout-page-controls"></div></div>
+      </section>
+      <section class="route-page tracking-page" id="tracking-page" hidden aria-labelledby="tracking-page-heading">
+        <div class="route-page-heading"><a class="back-link" href="#home">← Back to menu</a><span class="eyebrow">KITCHEN UPDATES</span><h1 id="tracking-page-heading">Order tracking<span class="heading-period">.</span></h1><p>Your token and preparation status, straight from the canteen.</p></div>
+        <div class="tracking-card" id="tracking-page-content"></div>
+      </section>
+      <section class="route-page feedback-page" id="feedback-page" hidden aria-labelledby="feedback-page-heading">
+        <div class="route-page-heading"><a class="back-link" href="#home">← Back to menu</a><span class="eyebrow">YOUR FEEDBACK MATTERS</span><h1 id="feedback-page-heading">Help us make <em>your canteen</em> better.</h1><p>Your feedback helps us improve your canteen experience.</p></div>
+        <form class="feedback-form" id="feedback-form" novalidate>
+          <div class="feedback-ratings">
+            <fieldset class="feedback-rating" data-rating="experience" data-label="Overall experience"></fieldset>
+            <fieldset class="feedback-rating" data-rating="foodQuality" data-label="Food quality"></fieldset>
+            <fieldset class="feedback-rating" data-rating="cleanliness" data-label="Cleanliness"></fieldset>
+            <fieldset class="feedback-rating" data-rating="staffService" data-label="Staff service"></fieldset>
+          </div>
+          <label class="feedback-comment-label" for="feedback-comments">Anything else you'd like us to know? <span>(optional)</span></label>
+          <textarea id="feedback-comments" name="comments" maxlength="1000" rows="5" placeholder="Share a thought with the canteen team (up to 1,000 characters)"></textarea>
+          <label class="feedback-anonymous"><input type="checkbox" id="feedback-anonymous" name="anonymous" /><span>Send this feedback anonymously</span></label>
+          <p class="feedback-form-status" id="feedback-form-status" role="status" aria-live="polite"></p>
+          <button class="feedback-submit" id="feedback-submit" type="submit">Submit Feedback <span aria-hidden="true">↗</span></button>
+          <p class="feedback-privacy-note">Ratings and optional comments are sent to the canteen feedback service only when it is configured and confirms receipt.</p>
+        </form>
+      </section>
+    </main>
+    <footer class="site-footer"><a class="footer-brand" href="#home"><span class="footer-brand-mark">✳</span> Crave<span>2Bite</span></a><span class="footer-message">Crave It. Scan It. Bite It.</span><span class="footer-location">MADE FRESH ON CAMPUS <span>✳</span></span></footer>
+
+    <section class="smartbite-panel" id="smartbite-panel" role="dialog" aria-modal="false" aria-labelledby="smartbite-heading" aria-hidden="true">
+      <div class="smartbite-header">
+        <span class="smartbite-avatar" aria-hidden="true">✳</span>
+        <span class="smartbite-title"><strong id="smartbite-heading">BiteBot AI</strong><small>YOUR MENU-SMART FOOD BUDDY</small></span>
+        <span class="smartbite-mode" id="smartbite-mode">RULE-BASED</span>
+        <button class="smartbite-close" id="smartbite-close" type="button" aria-label="Close BiteBot">×</button>
+      </div>
+      <div class="smartbite-disclosure">Honest recommendations from today's menu. Your budget and preferences stay on this device.</div>
+      <div class="smartbite-messages" id="smartbite-messages" role="log" aria-live="polite" aria-relevant="additions text"></div>
+      <form class="smartbite-form" id="smartbite-form">
+        <label class="smartbite-input-label" for="smartbite-budget">MY BUDGET (₹)</label>
+        <input class="smartbite-budget" id="smartbite-budget" type="number" min="1" max="100000" step="1" placeholder="Your budget (optional)" inputmode="numeric" />
+        <label class="smartbite-input-label" for="smartbite-preferences">WHAT SOUNDS GOOD?</label>
+        <input class="smartbite-preferences" id="smartbite-preferences" type="text" maxlength="80" placeholder="e.g. smoothie, pasta, something sweet" autocomplete="off" />
+        <button class="smartbite-submit" id="smartbite-submit" type="submit">Find my food <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="smartbite-footnote">Prices and availability are read from the menu. Preferences match menu descriptions, not verified allergen data.</p>
+    </section>
+    <button class="smartbite-launcher" id="smartbite-launcher" type="button" aria-label="Ask BiteBot AI for a food recommendation" aria-controls="smartbite-panel" aria-expanded="false">
+      <span class="smartbite-launcher-icon" aria-hidden="true">✳</span><span class="smartbite-launcher-label">BiteBot AI</span><span class="smartbite-launcher-dot" aria-hidden="true"></span>
+    </button>
+    <div class="overlay" id="overlay" hidden></div>
+    <aside class="side-panel cart-panel" id="cart-panel" aria-label="Your order" aria-hidden="true"><div class="panel-header"><span class="eyebrow"><span class="eyebrow-line"></span> YOUR LITTLE LINEUP</span><span class="panel-header-actions"><button class="panel-track-button" id="panel-track-order-button" type="button">Track order</button><button class="close-button" id="close-cart" aria-label="Close cart">×</button></span></div><h2>Your order<span class="heading-period">.</span></h2><p class="panel-description">All the good stuff, almost yours.</p><div class="cart-items" id="cart-items"></div><div class="cart-empty" id="cart-empty"><span class="empty-icon">✳</span><strong>Your lineup starts here.</strong><p>Go on. Find something delicious.</p><button id="explore-menu-button" class="text-button">Have a look around ↗</button></div><div class="cart-footer" id="cart-footer" hidden><div class="cart-subtotal"><span>Your total</span><strong id="cart-total">₹0</strong></div><fieldset class="payment-methods"><legend>How would you like to pay?</legend><label><input type="radio" name="payment-method" value="cash" checked /><span><strong>Cash at canteen</strong><small>Pay at the counter</small></span></label><label><input type="radio" name="payment-method" value="online" /><span><strong>Online payment</strong><small>Secure Razorpay checkout</small></span></label><label><input type="radio" name="payment-method" value="upi" /><span><strong>UPI</strong><small>UPI through Razorpay</small></span></label></fieldset><p class="payment-status-line" id="payment-status-note" hidden></p><p class="payment-setup-note" id="payment-setup-note" hidden></p><p class="cart-tax-note">Freshly made and ready to make your day.</p><button class="checkout-button" id="checkout-button">Place my order <span>↗</span></button></div></aside>
+    <section class="dialog status-dialog" id="status-dialog" role="dialog" aria-modal="true" aria-labelledby="order-dialog-heading" aria-hidden="true"><button class="dialog-close" data-close-dialog aria-label="Close order status">×</button><div id="order-dialog-content"></div></section>
+    <section class="dialog" id="admin-dialog" role="dialog" aria-modal="true" aria-labelledby="admin-heading" aria-hidden="true"><button class="dialog-close" data-close-dialog aria-label="Close staff dashboard">×</button><div class="admin-view" id="admin-view"></div></section>
+    <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  </body>
+</html>

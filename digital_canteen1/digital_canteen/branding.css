@@ -1,0 +1,116 @@
+:root {
+  --ink: #153e31;
+  --green: #087a57;
+  --green-soft: #e5f2eb;
+  --cream: #ffffff;
+  --cream-dark: #f4f8f5;
+  --peach: #f28b2e;
+  --muted: #68796f;
+  --line: #e2ece6;
+  --shadow: 0 16px 50px rgba(13, 72, 51, .12);
+}
+
+body {
+  background: #fff;
+}
+
+.announcement {
+  background: #07543f;
+}
+
+.announcement-dot,
+.mode-pill>span {
+  background: var(--peach);
+}
+
+.announcement-separator,
+.hero-image-sticker {
+  color: var(--peach);
+}
+
+.brand-mark {
+  display: block;
+  flex: 0 0 auto;
+  border-radius: 14px;
+}
+
+.brand-copy>strong {
+  color: var(--green);
+  letter-spacing: -.055em;
+}
+
+.brand-copy>strong span,
+.footer-brand>span:not(.footer-brand-mark) {
+  color: var(--peach);
+}
+
+.brand-copy small {
+  color: #567466;
+  font-size: 7px;
+  letter-spacing: .075em;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--green);
+}
+
+.admin-button,
+.hero-cta,
+.category-tab.active {
+  background: var(--green);
+}
+
+.admin-button:hover,
+.hero-cta:hover {
+  background: #07543f;
+}
+
+.cart-count,
+.step-icon,
+.popular-flower {
+  background: var(--peach);
+}
+
+.hero h1 span,
+.how-heading h2>span,
+.heading-period,
+.recommendation-note>span,
+.popular-arrow,
+.hero-flower {
+  color: var(--peach);
+}
+
+.smartbite-header,
+.smartbite-launcher {
+  background: #07543f;
+}
+
+.smartbite-header {
+  border-bottom: 3px solid var(--peach);
+}
+
+.smartbite-avatar,
+.smartbite-launcher-icon {
+  background: var(--peach);
+  color: #fff;
+}
+
+.smartbite-launcher-dot {
+  background: #ffd29e;
+}
+
+.smartbite-submit {
+  background: var(--green);
+}
+
+.smartbite-submit:hover,
+.smartbite-launcher:hover {
+  background: #08664a;
+}
+
+@media (max-width: 370px) {
+  .brand-copy>strong {
+    font-size: 12px;
+  }
+}
